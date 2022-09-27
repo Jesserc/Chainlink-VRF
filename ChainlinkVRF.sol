@@ -10,7 +10,6 @@ import '@chainlink/contracts/src/v0.8/ConfirmedOwner.sol';
  * Find information on LINK Token Contracts and get the latest ETH and LINK faucets here: https://docs.chain.link/docs/link-token-contracts/
  */
 
-
 contract VRFv2Consumer is VRFConsumerBaseV2, ConfirmedOwner {
     event RequestSent(uint256 requestId, uint32 numWords);
     event RequestFulfilled(uint256 requestId, uint256[] randomWords);
@@ -83,17 +82,17 @@ contract VRFv2Consumer is VRFConsumerBaseV2, ConfirmedOwner {
 
     function getTenRandomNumbers() public  view  returns(uint32[] memory){
         uint32[] memory randomNumbersArr = new uint32[](10);
-        randomNumbersArr[0] = uint32(lastRandomNumber  % 32);
-        randomNumbersArr[1] = uint32(lastRandomNumber  % 93);
-        randomNumbersArr[2] = uint32(lastRandomNumber % 43);
+        randomNumbersArr[0] = uint32(lastRandomNumber  % 7763587);
+        randomNumbersArr[1] = uint32(lastRandomNumber  % 6353);
+        randomNumbersArr[2] = uint32(lastRandomNumber % 3552);
         randomNumbersArr[3] = uint32(lastRandomNumber % 77635);
-        randomNumbersArr[4] = uint32(lastRandomNumber  % 81);
+        randomNumbersArr[4] = uint32(lastRandomNumber  % 22355);
         randomNumbersArr[5] = uint32(lastRandomNumber  % 3237);
-        randomNumbersArr[6] = uint32(lastRandomNumber % 53);
-        randomNumbersArr[7] = uint32(lastRandomNumber % 842);
+        randomNumbersArr[6] = uint32(lastRandomNumber % 333425);
+        randomNumbersArr[7] = uint32(lastRandomNumber %11938);
         randomNumbersArr[8] = uint32(lastRandomNumber % 4322);
         randomNumbersArr[9] = uint32(lastRandomNumber % 3727);
-        return randomNumbersArr;
+        return  randomNumbersArr;
     }
     function fulfillRandomWords(uint256 _requestId, uint256[] memory _randomWords) internal override {
         require(s_requests[_requestId].exists, 'request not found');
